@@ -5,7 +5,7 @@
 <img src='imgs/demo.gif' width=600>  
 
 Real-Time User-Guided Image Colorization with Learned Deep Priors.  
-[Richard Zhang](https://richzhang.github.io/)\*, [Jun-Yan Zhu](https://people.eecs.berkeley.edu/~junyanz/)\*, [Phillip Isola](http://people.eecs.berkeley.edu/~isola/), [Xinyang Geng](http://young-geng.xyz/), Angela S. Lin, Tianhe Yu, and [Alexei A. Efros](https://people.eecs.berkeley.edu/~efros/).  
+[Richard Zhang](https://richzhang.github.io/)\*, [Jun-Yan Zhu](http://people.csail.mit.edu/junyanz/)\*, [Phillip Isola](http://people.eecs.berkeley.edu/~isola/), [Xinyang Geng](http://young-geng.xyz/), Angela S. Lin, Tianhe Yu, and [Alexei A. Efros](https://people.eecs.berkeley.edu/~efros/).  
 In ACM Transactions on Graphics (SIGGRAPH 2017).  
 (\*indicates equal contribution)
 
@@ -82,35 +82,31 @@ We include an example usage of our Global Hints Network, applied to global histo
 You also need to add `pycaffe` to your `PYTHONPATH`. Use `vi ~/.bashrc` to edit the environment variables.
 ```bash
 PYTHONPATH=/path/to/caffe/python:$PYTHONPATH
+LD_LIBRARY_PATH=/path/to/caffe/build/lib:$LD_LIBRARY_PATH
 ```
-- Scikit-image and scikit-learn pacakges:
-```
+- Install scikit-image, scikit-learn, opencv, Qt4, and QDarkStyle pacakges:
+```bash
+# ./install/install_deps.sh
 sudo pip install scikit-image
 sudo pip install scikit-learn
-```
-- OpenCV
-```
 sudo apt-get install python-opencv
-```
-- Qt4
-```
 sudo apt-get install python-qt4
-```
-- QDarkStyle
-```
 sudo pip install qdarkstyle
 ```
-
 For Conda users, type the following command lines:
 ```bash
-conda install -c anaconda protobuf=3.2.0  ## photobuf
-conda install -c anaconda scikit-learn=0.18.1  ## scikit-learn
-conda install -c anaconda scikit-image=0.13.0  ## scikit-image
-conda install -c menpo opencv=2.4.11   ## opencv
+# ./install/install_conda.sh
+conda install -c anaconda protobuf  ## photobuf
+conda install -c anaconda scikit-learn ## scikit-learn
+conda install -c anaconda scikit-image  ## scikit-image
+conda install -c menpo opencv   ## opencv
 conda install pyqt=4.11 ## qt4
-conda install -c auto qdarkstyle=1.9  ## qdarkstyle
+conda install -c auto qdarkstyle  ## qdarkstyle
 ```
 
+- **Docker**: [[OSX Docker file](https://hub.docker.com/r/vbisbest/ideepcolor_osx/)] and [[OSX Installation video](https://www.youtube.com/watch?v=IORcb4lQlxQ)] by @vbisbest,  [[Docker file 2](https://hub.docker.com/r/swallner/ideepcolor/)] (by @sabrinawallner) based on [DL Docker]((https://github.com/floydhub/dl-docker).
+
+- More installation [help](https://github.com/junyanz/interactive-deep-colorization/issues/10) (by @SleepProgger).
 ### Citation
 If you use this code for your research, please cite our paper:
 ```
