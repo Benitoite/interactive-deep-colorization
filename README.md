@@ -1,8 +1,10 @@
 
 # Interactive Deep Colorization
 
-[[Project Page]](https://richzhang.github.io/ideepcolor/) [[Paper]](https://arxiv.org/abs/1705.02999) [[Demo Video]](https://youtu.be/eL5ilZgM89Q) [[Seminar Talk]](https://www.youtube.com/watch?v=FTzcFsz2xqw&feature=youtu.be&t=992)
+[[Project Page]](https://richzhang.github.io/ideepcolor/) [[Paper]](https://arxiv.org/abs/1705.02999) [[Demo Video]](https://youtu.be/eL5ilZgM89Q) [[SIGGRAPH Talk]](https://www.youtube.com/watch?v=rp5LUSbdsys)
 <img src='imgs/demo.gif' width=600>  
+
+<b>9/3/2018 Update</b> The code now supports a backend PyTorch model. Please find a PyTorch reimplementation of the Local Hints Network training code in the [colorization-pytorch](https://github.com/richzhang/colorization-pytorch) repository.
 
 Real-Time User-Guided Image Colorization with Learned Deep Priors.  
 [Richard Zhang](https://richzhang.github.io/)\*, [Jun-Yan Zhu](http://people.csail.mit.edu/junyanz/)\*, [Phillip Isola](http://people.eecs.berkeley.edu/~isola/), [Xinyang Geng](http://young-geng.xyz/), Angela S. Lin, Tianhe Yu, and [Alexei A. Efros](https://people.eecs.berkeley.edu/~efros/).  
@@ -11,11 +13,12 @@ In ACM Transactions on Graphics (SIGGRAPH 2017).
 
 We first describe the system <b>(0) Prerequisities</b> and steps for <b>(1) Getting started</b>. We then describe the interactive colorization demo <b>(2) Interactive Colorization (Local Hints Network)</b>. There are two demos: (a) a "barebones" version in iPython notebook and (b) the full GUI we used in our paper. We then provide an example of the <b>(3) Global Hints Network</b>.
 
+
 <img src='https://richzhang.github.io/ideepcolor/index_files/imagenet_showcase_small.jpg' width=800>
 
 ### (0) Prerequisites
 - Linux or OSX
-- [Caffe](http://caffe.berkeleyvision.org/installation.html)
+- [Caffe](http://caffe.berkeleyvision.org/installation.html) or PyTorch
 - CPU or NVIDIA GPU + CUDA CuDNN.
 
 ### (1) Getting Started
@@ -30,7 +33,7 @@ cd ideepcolor
 bash ./models/fetch_models.sh
 ```
 
-- Install [Caffe](http://caffe.berkeleyvision.org/installation.html) and 3rd party Python libraries ([OpenCV](http://opencv.org/), [scikit-learn](http://scikit-learn.org/stable/install.html) and [scikit-image](https://github.com/scikit-image/scikit-image)). See the [Requirements](#Requirements) for more details.
+- Install [Caffe](http://caffe.berkeleyvision.org/installation.html) or [PyTorch]() and 3rd party Python libraries ([OpenCV](http://opencv.org/), [scikit-learn](http://scikit-learn.org/stable/install.html) and [scikit-image](https://github.com/scikit-image/scikit-image)). See the [Requirements](#Requirements) for more details.
 
 ### (2) Interactive Colorization (Local Hints Network)
 <img src='imgs/teaser_v3.jpg' width=800>
@@ -52,6 +55,7 @@ If you need to convert the Notebook to an older version, use `jupyter nbconvert 
 --win_size    [512] GUI window size
 --gpu         [0] GPU number
 --image_file  ['./test_imgs/mortar_pestle.jpg'] path to the image file
+--backend     ['caffe'] either use 'caffe' or 'pytorch'; 'caffe' is the official model from siggraph 2017, and 'pytorch' is a reimplementation
 ```
 
 - User interactions
@@ -78,12 +82,18 @@ We include an example usage of our Global Hints Network, applied to global histo
 - Run `ipython notebook`. Click on [`./DemoGlobalHistogramTransfer.ipynb`](./DemoGlobalHistogramTransfer.ipynb)
 
 ### Installation
-- Install Caffe: see the Caffe [installation](http://caffe.berkeleyvision.org/installation.html) and Ubuntu installation [document](http://caffe.berkeleyvision.org/install_apt.html). Please compile the Caffe with the python layer [support](https://chrischoy.github.io/research/caffe-python-layer/) (set `WITH_PYTHON_LAYER=1` in the `Makefile.config`) and build Caffe python library by `make pycaffe`.
-You also need to add `pycaffe` to your `PYTHONPATH`. Use `vi ~/.bashrc` to edit the environment variables.
-```bash
-PYTHONPATH=/path/to/caffe/python:$PYTHONPATH
-LD_LIBRARY_PATH=/path/to/caffe/build/lib:$LD_LIBRARY_PATH
-```
+- Install Caffe or PyTorch. The Caffe model is official. PyTorch is a reimplementation.
+
+  - Install Caffe: see the Caffe [installation](http://caffe.berkeleyvision.org/installation.html) and Ubuntu installation [document](http://caffe.berkeleyvision.org/install_apt.html). Please compile the Caffe with the python layer [support](https://chrischoy.github.io/research/caffe-python-layer/) (set `WITH_PYTHON_LAYER=1` in the `Makefile.config`) and build Caffe python library by `make pycaffe`.
+
+  You also need to add `pycaffe` to your `PYTHONPATH`. Use `vi ~/.bashrc` to edit the environment variables.
+  ```bash
+  PYTHONPATH=/path/to/caffe/python:$PYTHONPATH
+  LD_LIBRARY_PATH=/path/to/caffe/build/lib:$LD_LIBRARY_PATH
+  ```
+
+  - Install PyTorch: see the PyTorch [installation](https://pytorch.org/) guide.
+
 - Install scikit-image, scikit-learn, opencv, Qt4, and QDarkStyle pacakges:
 ```bash
 # ./install/install_deps.sh
@@ -93,13 +103,13 @@ sudo apt-get install python-opencv
 sudo apt-get install python-qt4
 sudo pip install qdarkstyle
 ```
-For Conda users, type the following command lines:
+For Conda users, type the following command lines (this may work for full Anaconda but not Miniconda):
 ```bash
 # ./install/install_conda.sh
 conda install -c anaconda protobuf  ## photobuf
-conda install -c anaconda scikit-learn ## scikit-learn
-conda install -c anaconda scikit-image  ## scikit-image
-conda install -c menpo opencv   ## opencv
+conda install -c anaconda scikit-learn=0.19.1 ## scikit-learn
+conda install -c anaconda scikit-image=0.13.0  ## scikit-image
+conda install -c menpo opencv=2.4.11   ## opencv
 conda install pyqt=4.11 ## qt4
 conda install -c auto qdarkstyle  ## qdarkstyle
 ```
@@ -107,6 +117,11 @@ conda install -c auto qdarkstyle  ## qdarkstyle
 - **Docker**: [[OSX Docker file](https://hub.docker.com/r/vbisbest/ideepcolor_osx/)] and [[OSX Installation video](https://www.youtube.com/watch?v=IORcb4lQlxQ)] by @vbisbest,  [[Docker file 2](https://hub.docker.com/r/swallner/ideepcolor/)] (by @sabrinawallner) based on [DL Docker]((https://github.com/floydhub/dl-docker).
 
 - More installation [help](https://github.com/junyanz/interactive-deep-colorization/issues/10) (by @SleepProgger).
+
+### Training
+
+Please find a PyTorch reimplementation of the Local Hints Network training code in the [colorization-pytorch](https://github.com/richzhang/colorization-pytorch) repository.
+
 ### Citation
 If you use this code for your research, please cite our paper:
 ```
