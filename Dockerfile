@@ -16,7 +16,8 @@ ENV LC_ALL C.UTF-8
 
 RUN git clone https://github.com/Benitoite/interactive-deep-colorization.git ~/ideepcolor && cd ~/ideepcolor && git checkout python3
 RUN git clone https://github.com/richzhang/colorization-pytorch.git ~/colorization-pytorch
-#   something else
+
+#   get training data
 
 RUN cd ~/ideepcolor && bash ./models/fetch_models.sh
 RUN cd ~/colorization-pytorch && bash pretrained_models/download_siggraph_model.sh
