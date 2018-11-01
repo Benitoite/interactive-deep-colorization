@@ -17,7 +17,7 @@ RUN git clone https://github.com/Benitoite/interactive-deep-colorization.git ~/i
 
 #   something else
 
-RUN echo
+RUN cd ~/ideepcolor && bash ./models/fetch_models.sh
 RUN echo
 
 #   set the entrypoint command
