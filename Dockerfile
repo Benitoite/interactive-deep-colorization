@@ -1,4 +1,4 @@
-FROM kd6kxr/dl-docker
+FROM kd6kxr/dl-opencv
 
 #   add the dependencies
 
