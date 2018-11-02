@@ -2,7 +2,7 @@ FROM kd6kxr/dl-opencv
 
 #   add the dependencies
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends build-essential locales cmake git curl libsigc++-2.0-dev libtiff5-dev zlib1g-dev ca-certificates ssl-cert -y
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends python-qt4 qt4-dev-tools build-essential locales cmake git curl libsigc++-2.0-dev libtiff5-dev zlib1g-dev ca-certificates ssl-cert -y
 RUN pip install torchvision && pip install qdarkstyle
 
 #   clone source code, checkout dev branch
