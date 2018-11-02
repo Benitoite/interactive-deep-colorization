@@ -18,4 +18,4 @@ RUN cd ~/colorization-pytorch && bash pretrained_models/download_siggraph_model.
 #   set the entrypoint command
 
 LABEL maintainer="kd6kxr@gmail.com"
-CMD echo "This is a test..." && python3 ~/ideepcolor/ideepcolor.py --cpu-mode && echo "THATS ALL FOLKS!!!"
+CMD echo "This is a test..." && python ~/ideepcolor/ideepcolor.py --cpu-mode && echo "THATS ALL FOLKS!!!"
