@@ -36,7 +36,7 @@ bash ./models/fetch_models.sh
 - Install [Caffe](http://caffe.berkeleyvision.org/installation.html) or [PyTorch]() and 3rd party Python libraries ([OpenCV](http://opencv.org/), [scikit-learn](http://scikit-learn.org/stable/install.html) and [scikit-image](https://github.com/scikit-image/scikit-image)). See the [Requirements](#Requirements) for more details.
 
 ### (2) Interactive Colorization (Local Hints Network)
-<img src='imgs/teaser_v3.jpg' width=800>
+[](https://raw.githubusercontent.com/Benitoite/interactive-deep-colorization/master/imgs/teaser_v3.jpg)
 
 We provide a "barebones" demo in iPython notebook, which does not require QT. We also provide our full GUI demo.
 
@@ -60,7 +60,7 @@ If you need to convert the Notebook to an older version, use `jupyter nbconvert 
 
 - User interactions
 
-<img src='./imgs/pad.jpg' width=800>
+[](https://raw.githubusercontent.com/Benitoite/interactive-deep-colorization/master/imgs/pad.jpg)
 
 - <b>Adding points</b>: Left-click somewhere on the input pad
 - <b>Moving points</b>: Left-click and hold on a point on the input pad, drag to desired location, and let go
