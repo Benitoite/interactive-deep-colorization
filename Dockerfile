@@ -3,7 +3,8 @@ FROM kd6kxr/dl-opencv
 #   add the dependencies
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends python-qt4 qt4-dev-tools build-essential locales cmake git curl libsigc++-2.0-dev libtiff5-dev zlib1g-dev ca-certificates ssl-cert -y
-RUN pip install torchvision && pip install qdarkstyle
+RUN python2 -m pip install torchvision qdarkstyle protobuf sklearn && python3 -m pip install torchvision qdarkstyle protobuf sklearn
+RUN python2 -m pip install python-dateutil --upgrade && python3 -m pip install python-dateutil --upgrade
 
 #   clone source code, checkout dev branch
 
