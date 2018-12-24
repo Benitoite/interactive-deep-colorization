@@ -1,5 +1,4 @@
 import numpy as np
-import time
 import cv2
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -15,11 +14,6 @@ import os
 import datetime
 import glob
 import sys
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import skimage
-
-mpl.use('Qt4Agg')
 
 
 class GUIDraw(QWidget):
@@ -200,7 +194,6 @@ class GUIDraw(QWidget):
 
     def calibrate_color(self, c, pos):
         x, y = self.scale_point(pos)
-        P = int(self.brushWidth / self.scale)
 
         # snap color based on L color
         color_array = np.array((c.red(), c.green(), c.blue())).astype(
