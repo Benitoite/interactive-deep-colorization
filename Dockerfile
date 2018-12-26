@@ -8,7 +8,7 @@ RUN python2 -m pip install python-dateutil --upgrade && python3 -m pip install p
 
 #   clone source code, checkout dev branch
 
-RUN git clone https://github.com/Benitoite/interactive-deep-colorization.git ~/ideepcolor && cd ~/ideepcolor && git checkout python3
+RUN git clone https://github.com/Benitoite/interactive-deep-colorization.git ~/ideepcolor
 RUN git clone https://github.com/richzhang/colorization-pytorch.git ~/colorization-pytorch
 
 #   get training data
