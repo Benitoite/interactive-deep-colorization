@@ -5,8 +5,7 @@
 #### `open -a XQuartz`
 #### `socat TCP-LISTEN:6000,bind=$(ifconfig -a|tail +9|grep 'inet '|cut -d ' ' -f 2),reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"`
 2. Second terminal window
-#### `docker run -e DISPLAY=$(ifconfig -a|tail +9|grep 'inet '|cut -d ' ' -f 2):0 -e QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb -v /tmp/X11-unix=/tmp/X11-unix -v ~:/hi:private kd6kxr/ideepcolor bash`
-#### `cd ~/ideepcolor && python ideepcolor.py --cpu_mode --image_file /hi/Desktop\ Folder/image.jpg`
+#### `docker run -e DISPLAY=$(ifconfig -a|tail +9|grep 'inet '|cut -d ' ' -f 2):0 -e QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb -v /tmp/X11-unix=/tmp/X11-unix -v ~:/hi:private kd6kxr/ideepcolor`
 
 # Interactive Deep Colorization
 
